@@ -1,1 +1,56 @@
-<p>user-creation works!</p>
+<div class="user-creation-container">
+  <h2>Create New User</h2>
+  <form [formGroup]="userForm" (ngSubmit)="onSubmit()" class="user-form">
+    <div class="form-group">
+      <label for="name">Name:</label>
+      <input
+        type="text"
+        id="name"
+        formControlName="name"
+        class="form-control"
+        [class.error]="name?.invalid && name?.touched">
+      <div class="error-message" *ngIf="name?.invalid && name?.touched">
+        <span *ngIf="name?.errors?.['required']">Name is required</span>
+        <span *ngIf="name?.errors?.['minlength']">Name must be at least 2 characters</span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input
+        type="email"
+        id="email"
+        formControlName="email"
+        class="form-control"
+        [class.error]="email?.invalid && email?.touched">
+      <div class="error-message" *ngIf="email?.invalid && email?.touched">
+        <span *ngIf="email?.errors?.['required']">Email is required</span>
+        <span *ngIf="email?.errors?.['email']">Please enter a valid email</span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="password">Password:</label>
+      <input
+        type="password"
+        id="password"
+        formControlName="password"
+        class="form-control"
+        [class.error]="password?.invalid && password?.touched">
+      <div class="error-message" *ngIf="password?.invalid && password?.touched">
+        <span *ngIf="password?.errors?.['required']">Password is required</span>
+        <span *ngIf="password?.errors?.['minlength']">Password must be at least 6 characters</span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="role">Role:</label>
+      <select id="role" formControlName="role" class="form-control">
+        <option value="user">User</option>
+        <option value="admin">Admin</option>
+      </select>
+    </div>
+
+    <button type="submit" [disabled]="userForm.invalid" class="submit-btn">Create User</button>
+  </form>
+</div>
