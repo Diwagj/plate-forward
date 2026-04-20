@@ -13,13 +13,6 @@ app.listen(3000, () => {
     console.log('Server is running on port 3000');
 });
 
-const Employee = mongoose.model('Employees', new mongoose.Schema({
-    employeeID: String,
-    name: String,
-    department: String,
-    jobTitle: String
-}));
-
 const User = mongoose.model('User', new mongoose.Schema({
   name: String,
   email: { type: String, unique: true },
@@ -33,18 +26,6 @@ const FoodDonation = mongoose.model('FoodDonation', new mongoose.Schema({
   expiry: Date,
   donor: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }
 }, { timestamps: true }));
-
-app.get('/api/employee', async (req, res) => {
-    const employee = await Employee.find();
-    res.send(employee);
-});
-
-app.post('/api/employee', async (req, res) => {
-    const employee = new Employee(req.body);
-    await employee.save();
-    res.send(employee);
-    console.log('Added new employee:', employee);
-});
 
 // User endpoints
 app.post('/api/users', async (req, res) => {
