@@ -1,5 +1,5 @@
 import { Component, inject, OnInit, OnDestroy } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Router } from '@angular/router';
 import { UserServiceService } from '../user-service.service';
 import { CommonModule } from '@angular/common';
 import { Subscription } from 'rxjs';
@@ -12,6 +12,7 @@ import { Subscription } from 'rxjs';
 })
 export class NavbarComponent implements OnInit, OnDestroy {
   private userService = inject(UserServiceService);
+  private router = inject(Router);
   private subscription: Subscription = new Subscription();
   isLoggedInFlag = false;
   isDropdownOpen = false;
@@ -36,6 +37,6 @@ export class NavbarComponent implements OnInit, OnDestroy {
   }
 
   toggleDropdown() {
-    this.isDropdownOpen = !this.isDropdownOpen;
+    this.router.navigate(['/profile']);
   }
 }
