@@ -6,10 +6,13 @@
         Home
       </a>
     </li>
-    <li>
+    <li *ngIf="!isLoggedInFlag">
       <a routerLink="/login" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
         Login
       </a>
+    </li>
+    <li *ngIf="isLoggedInFlag">
+      <img src="/defaultProfile.png" alt="Profile" class="profile-photo" (click)="logout()">
     </li>
   </ul>
 </nav>
