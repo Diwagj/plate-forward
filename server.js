@@ -12,6 +12,7 @@ app.use(cors());
 const JWT_SECRET = process.env.JWT_SECRET || 'your-super-secret-jwt-key-change-this';
 
 const User = mongoose.model('User', new mongoose.Schema({
+  username: String,
   name: String,
   email: { type: String, unique: true },
   password: String,
@@ -62,7 +63,7 @@ app.post('/api/users', async (req, res) => {
     const saltRounds = 10;
     const hashedPassword = await bcrypt.hash(password, saltRounds);
     
-    const user = new User({ name, email, password: hashedPassword, role: role || 'user' });
+    const user = new User({ username: name, name, email, password: hashedPassword, role: role || 'user' });
     await user.save();
     
     const token = jwt.sign({ id: user._id }, JWT_SECRET, { expiresIn: '24h' });
