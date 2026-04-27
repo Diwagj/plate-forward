@@ -13,7 +13,10 @@
     </li>
     <li *ngIf="isLoggedInFlag" class="profile-container">
       <img src="/defaultProfile.png" alt="Profile" class="profile-photo" (click)="toggleDropdown()" title="Go to Profile">
-      <button (click)="logout()" class="logout-btn">Logout</button>
+      <div *ngIf="isDropdownOpen" class="dropdown">
+        <a routerLink="/profile" (click)="closeDropdown()">Profile</a>
+        <button (click)="logout()">Logout</button>
+      </div>
     </li>
   </ul>
 </nav>

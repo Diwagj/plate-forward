@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { UserServiceService } from '../user-service.service';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
@@ -10,14 +10,18 @@ import { RouterLink } from '@angular/router';
   template: `
     <div class="profile-container">
       <h2>User Profile</h2>
-      <div class="profile-card" *ngIf="user()">
-        <img [src]="'/assets/boy.jpeg'" alt="Profile" class="profile-avatar">
-        <h3>{{ user()?.name }}</h3>
-        <p><strong>Email:</strong> {{ user()?.email }}</p>
-        <p><strong>Role:</strong> {{ user()?.role }}</p>
-        <a routerLink="/home" class="back-btn">Back to Home</a>
-      </div>
-      <p *ngIf="!user()">Please log in to view profile.</p>
+      <ng-container *ngIf="user$ | async as user; else noUser">
+        <div class="profile-card">
+          <img [src]="user.photo || '/defaultProfile.png'" [alt]="user.name || 'Profile'" class="profile-avatar">
+          <h3>{{ user.name }}</h3>
+          <p><strong>Email:</strong> {{ user.email }}</p>
+          <p><strong>Role:</strong> {{ user.role }}</p>
+          <a routerLink="/home" class="back-btn">Back to Home</a>
+        </div>
+      </ng-container>
+      <ng-template #noUser>
+        <p>Please log in to view profile.</p>
+      </ng-template>
     </div>
   `,
   styles: [`
@@ -63,6 +67,6 @@ import { RouterLink } from '@angular/router';
 })
 export class UserProfileComponent {
   private userService = inject(UserServiceService);
-  user = signal(this.userService.getCurrentUser());
+  user$ = this.userService.currentUser$;
 }
 
