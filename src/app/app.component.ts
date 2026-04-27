@@ -1,12 +1,39 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy, inject } from '@angular/core';
+import { Router } from '@angular/router';
 import { RouterOutlet } from '@angular/router';
+import { CommonModule } from '@angular/common';
 import { NavbarComponent } from './navbar/navbar.component';
+import { Subscription } from 'rxjs';
+import { NotificationService } from './notification.service';
+
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, NavbarComponent],
+  imports: [RouterOutlet, NavbarComponent, CommonModule],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit, OnDestroy {
   title = 'plate-forward';
+  noticeMessage = '';
+  private subscription: Subscription | undefined;
+  private notification = inject(NotificationService);
+  private router = inject(Router);
+
+  ngOnInit() {
+    this.subscription = this.notification.message$.subscribe(msg => {
+      this.noticeMessage = msg;
+    });
+  }
+
+  ngOnDestroy() {
+    this.subscription?.unsubscribe();
+  }
+
+  goToLogin(event?: Event) {
+    if (event) {
+      event.stopPropagation();
+    }
+    this.router.navigate(['/login']);
+    this.notification.clear();
+  }
 }

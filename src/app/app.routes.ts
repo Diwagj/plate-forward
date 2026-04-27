@@ -9,5 +9,6 @@ export const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginformComponent },
   { path: 'user-creation', component: UserCreationComponent },
-  { path: 'profile', component: UserProfileComponent }
+  { path: 'profile', component: UserProfileComponent },
+  { path: 'food-donation', loadComponent: () => import('./food-donation/food-donation.component').then(m => m.FoodDonationComponent) },
 ];

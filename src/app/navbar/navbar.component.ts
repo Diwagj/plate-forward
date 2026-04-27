@@ -1,8 +1,9 @@
-import { Component, inject, OnInit, OnDestroy, HostListener, ElementRef } from '@angular/core';
+import { Component, inject, OnInit, OnDestroy } from '@angular/core';
 import { RouterModule, Router } from '@angular/router';
 import { UserServiceService } from '../user-service.service';
 import { CommonModule } from '@angular/common';
 import { Subscription } from 'rxjs';
+import { NotificationService } from '../notification.service';
 
 @Component({
   selector: 'app-navbar',
@@ -13,17 +14,14 @@ import { Subscription } from 'rxjs';
 export class NavbarComponent implements OnInit, OnDestroy {
   private userService = inject(UserServiceService);
   private router = inject(Router);
-  private elementRef = inject(ElementRef<HTMLElement>);
   private subscription: Subscription = new Subscription();
   isLoggedInFlag = false;
   isDropdownOpen = false;
+  private notification = inject(NotificationService);
 
   ngOnInit() {
     this.subscription = this.userService.currentUser$.subscribe(user => {
       this.isLoggedInFlag = !!user;
-      if (!user) {
-        this.isDropdownOpen = false;
-      }
     });
   }
 
@@ -31,33 +29,25 @@ export class NavbarComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
   }
 
-  @HostListener('document:click', ['$event'])
-  onDocumentClick(event: Event) {
-    if (!this.isDropdownOpen) {
-      return;
-    }
-
-    const target = event.target as Node;
-    if (!this.elementRef.nativeElement.contains(target)) {
-      this.isDropdownOpen = false;
-    }
-  }
-
   isLoggedIn() {
     return this.isLoggedInFlag;
   }
 
-  toggleDropdown() {
-    this.isDropdownOpen = !this.isDropdownOpen;
-  }
-
-  closeDropdown() {
+  logout() {
+    this.userService.logout();
     this.isDropdownOpen = false;
   }
 
-  logout() {
-    this.closeDropdown();
-    this.userService.logout();
-    this.router.navigate(['/home']);
+  toggleDropdown() {
+    this.router.navigate(['/profile']);
+  }
+
+  goToDonation(event: Event) {
+    event.preventDefault();
+    if (!this.isLoggedInFlag) {
+      this.notification.show('Please log in first');
+      return;
+    }
+    this.router.navigate(['/food-donation']);
   }
 }

@@ -1,3 +1,7 @@
 <app-navbar></app-navbar>
 
+<div class="global-notice" *ngIf="noticeMessage" (click)="goToLogin($event)">
+	{{ noticeMessage }}
+</div>
+
 <router-outlet></router-outlet>

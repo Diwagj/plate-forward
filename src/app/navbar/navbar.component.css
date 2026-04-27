@@ -19,6 +19,15 @@
   letter-spacing: 0.05em;
 }
 
+.notice {
+  margin-left: 16px;
+  background: rgba(255,255,255,0.12);
+  color: #fff;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-weight: 600;
+}
+
 .nav-links {
   display: flex;
   align-items: center;
@@ -48,8 +57,6 @@
 }
 
 .profile-photo {
-  display: block;
-  box-sizing: border-box;
   width: 40px;
   height: 40px;
   border-radius: 50%;
@@ -64,49 +71,40 @@
 
 .profile-container {
   position: relative;
-  display: inline-flex;
-  align-items: center;
 }
 
-.dropdown {
+.dropdown-menu {
   position: absolute;
-  top: calc(100% + 8px);
+  top: 100%;
   right: 0;
   background-color: #ffffff;
   border: 1px solid #ddd;
   border-radius: 8px;
-  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.15);
-  min-width: 140px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  min-width: 120px;
   z-index: 100;
 }
 
-.dropdown a,
-.dropdown button {
+.dropdown-menu a {
   display: block;
-  width: 100%;
-  text-align: left;
   padding: 10px 15px;
   color: #333;
   text-decoration: none;
-  background: none;
-  border: none;
-  border-radius: 0%;
-  font: inherit;
-  cursor: pointer;
+  font-weight: 500;
+  border-radius: 0;
 }
 
-.dropdown a:hover,
-.dropdown button:hover {
+.dropdown-menu a:hover {
   background-color: #f5f5f5;
   color: #1f8a67;
 }
 
-.dropdown a:first-child {
+.dropdown-menu a:first-child {
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
 }
 
-.dropdown button:last-child {
+.dropdown-menu a:last-child {
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
 }

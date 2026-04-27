@@ -1,1 +1,20 @@
-<p>food-donation works!</p>
+<form (submit)="submitDonation(foodInput.value, addressInput.value); $event.preventDefault();">
+	<div>
+		<label for="food">Food donated</label>
+		<input id="food" #foodInput type="text" placeholder="e.g., 5 loaves of bread" />
+	</div>
+
+	<div>
+		<label for="address">Pickup address</label>
+		<input id="address" #addressInput type="text" placeholder="Street, city, zip" />
+	</div>
+
+	<button type="submit">Submit Donation</button>
+</form>
+
+<div *ngIf="submitted">
+	<p>Thanks — donation recorded:</p>
+	<p><strong>Food: </strong> {{ donatedFood }}</p>
+	<p><strong>Address: </strong> {{ address }}</p>
+</div>
+

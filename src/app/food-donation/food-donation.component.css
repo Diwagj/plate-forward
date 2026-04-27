@@ -1,0 +1,73 @@
+:host {
+	display: block;
+	padding: 16px;
+}
+
+form {
+	max-width: 480px;
+	margin: 0 auto;
+	background: #fff;
+	border: 1px solid #e6e6e6;
+	border-radius: 8px;
+	padding: 16px;
+	box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+form div {
+	margin-bottom: 12px;
+}
+
+label {
+	display: block;
+	font-weight: 600;
+	margin-bottom: 6px;
+	color: #333;
+}
+
+input[type="text"] {
+	width: 100%;
+	padding: 8px 10px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	font-size: 14px;
+	box-sizing: border-box;
+}
+
+button[type="submit"] {
+	display: inline-block;
+	background: #2b8aef;
+	color: #fff;
+	border: none;
+	padding: 10px 14px;
+	border-radius: 6px;
+	cursor: pointer;
+	font-weight: 600;
+}
+
+button[type="submit"]:hover {
+	background: #1e6fd6;
+}
+
+div[ng-reflect-ng-if], .confirmation, .submitted, .confirmation p {
+	text-align: left;
+}
+
+.confirmation {
+	max-width: 480px;
+	margin: 12px auto 0;
+	padding: 12px;
+	border-radius: 6px;
+	background: #f6ffef;
+	border: 1px solid #e0f3d8;
+}
+
+.confirmation p {
+	margin: 6px 0;
+}
+
+@media (max-width: 520px) {
+	form, .confirmation {
+		margin: 0 12px;
+	}
+}
+

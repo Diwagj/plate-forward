@@ -2,6 +2,11 @@
     <span class="brand-text">Plate Forward</span>
   <ul class="nav-links">
     <li>
+      <a href="#" (click)="goToDonation($event)">
+        Food Donation
+      </a>
+    </li>
+    <li>
       <a routerLink="/home" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
         Home
       </a>
@@ -13,10 +18,8 @@
     </li>
     <li *ngIf="isLoggedInFlag" class="profile-container">
       <img src="/defaultProfile.png" alt="Profile" class="profile-photo" (click)="toggleDropdown()" title="Go to Profile">
-      <div *ngIf="isDropdownOpen" class="dropdown">
-        <a routerLink="/profile" (click)="closeDropdown()">Profile</a>
-        <button (click)="logout()">Logout</button>
-      </div>
+      <button (click)="logout()" class="logout-btn">Logout</button>
     </li>
+    
   </ul>
 </nav>
