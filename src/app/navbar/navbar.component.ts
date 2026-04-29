@@ -44,10 +44,6 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
   goToDonation(event: Event) {
     event.preventDefault();
-    if (!this.isLoggedInFlag) {
-      this.notification.show('Please log in first');
-      return;
-    }
     this.router.navigate(['/food-donation']);
   }
 }

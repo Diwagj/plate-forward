@@ -1,20 +1,26 @@
-<form (submit)="submitDonation(foodInput.value, addressInput.value); $event.preventDefault();">
-	<div>
-		<label for="food">Food donated</label>
-		<input id="food" #foodInput type="text" placeholder="e.g., 5 loaves of bread" />
-	</div>
+<div *ngIf="!isLoggedIn" class="login-message">
+  <p (click)="goToLogin()" style="cursor: pointer; color: blue; text-decoration: underline;">Please log in first</p>
+</div>
 
-	<div>
-		<label for="address">Pickup address</label>
-		<input id="address" #addressInput type="text" placeholder="Street, city, zip" />
-	</div>
+<div *ngIf="isLoggedIn">
+  <form (submit)="submitDonation(foodInput.value, addressInput.value); $event.preventDefault();">
+    <div>
+      <label for="food">Food donated</label>
+      <input id="food" #foodInput type="text" placeholder="e.g., 5 loaves of bread" />
+    </div>
 
-	<button type="submit">Submit Donation</button>
-</form>
+    <div>
+      <label for="address">Pickup address</label>
+      <input id="address" #addressInput type="text" placeholder="Street, city, zip" />
+    </div>
 
-<div *ngIf="submitted">
-	<p>Thanks — donation recorded:</p>
-	<p><strong>Food: </strong> {{ donatedFood }}</p>
-	<p><strong>Address: </strong> {{ address }}</p>
+    <button type="submit">Submit Donation</button>
+  </form>
+
+  <div *ngIf="submitted">
+    <p>Thanks — donation recorded:</p>
+    <p><strong>Food: </strong> {{ donatedFood }}</p>
+    <p><strong>Address: </strong> {{ address }}</p>
+  </div>
 </div>
 

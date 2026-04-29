@@ -3,6 +3,13 @@
 	padding: 16px;
 }
 
+.login-message {
+	text-align: center;
+	font-weight: 600;
+	color: #333;
+	padding: 16px;
+}
+
 form {
 	max-width: 480px;
 	margin: 0 auto;

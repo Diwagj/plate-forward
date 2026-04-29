@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
+import { UserServiceService } from '../user-service.service';
 
 @Component({
   selector: 'app-food-donation',
@@ -8,10 +10,21 @@ import { CommonModule } from '@angular/common';
   templateUrl: './food-donation.component.html',
   styleUrls: ['./food-donation.component.css']
 })
-export class FoodDonationComponent {
+export class FoodDonationComponent implements OnInit {
+  private userService = inject(UserServiceService);
+  private router = inject(Router);
+  isLoggedIn = false;
   donatedFood = '';
   address = '';
   submitted = false;
+
+  ngOnInit() {
+    this.isLoggedIn = this.userService.isLoggedIn();
+  }
+
+  goToLogin() {
+    this.router.navigate(['/login']);
+  }
 
   submitDonation(food: string, address: string) {
     this.donatedFood = food?.trim() ?? '';
