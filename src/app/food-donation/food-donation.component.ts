@@ -1,5 +1,4 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { UserServiceService } from '../user-service.service';
 import { FoodDonoServiceService } from '../food-dono-service.service';
@@ -7,7 +6,7 @@ import { FoodDonoServiceService } from '../food-dono-service.service';
 @Component({
   selector: 'app-food-donation',
   standalone: true,
-  imports: [CommonModule],
+  imports: [],
   templateUrl: './food-donation.component.html',
   styleUrls: ['./food-donation.component.css']
 })

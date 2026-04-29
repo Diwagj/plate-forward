@@ -1,12 +1,15 @@
 
 <div class="profile-container">
       <h2>User Profile</h2>
-      <div class="profile-card" *ngIf="user()">
+      @if (user()) {
+      <div class="profile-card">
         <img [src]="'/defaultProfile.png'" alt="Profile" class="profile-avatar">
         <h3>{{ user()?.name }}</h3>
         <p><strong>Email:</strong> {{ user()?.email }}</p>
         <p><strong>Role:</strong> {{ user()?.role }}</p>
         <a routerLink="/home" class="back-btn">Back to Home</a>
       </div>
-      <p *ngIf="!user()">Please log in to view profile.</p>
+      } @else {
+      <p>Please log in to view profile.</p>
+      }
 </div>

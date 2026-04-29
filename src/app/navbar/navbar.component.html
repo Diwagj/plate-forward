@@ -16,18 +16,24 @@
         Home
       </a>
     </li>
-    <li *ngIf="!isLoggedInFlag">
+    @if (!isLoggedInFlag) {
+    <li>
       <a routerLink="/login" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
         Login
       </a>
     </li>
-    <li *ngIf="isLoggedInFlag" class="profile-container">
+    }
+    @if (isLoggedInFlag) {
+    <li class="profile-container">
       <img src="/defaultProfile.png" alt="Profile" class="profile-photo" (click)="toggleDropdown()">
-      <div class="dropdown-menu" *ngIf="isDropdownOpen">
+      @if (isDropdownOpen) {
+      <div class="dropdown-menu">
         <a (click)="goToProfile()">Profile</a>
         <a (click)="logout()">Logout</a>
       </div>
+      }
     </li>
+    }
     
   </ul>
 </nav>

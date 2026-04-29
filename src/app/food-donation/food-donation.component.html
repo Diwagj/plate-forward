@@ -1,8 +1,10 @@
-<div *ngIf="!isLoggedIn" class="login-message">
+@if (!isLoggedIn) {
+<div class="login-message">
   <p (click)="goToLogin()" style="cursor: pointer; color: blue; text-decoration: underline;">Please log in first</p>
 </div>
-
-<div *ngIf="isLoggedIn">
+}
+@if (isLoggedIn) {
+<div>
   <form (submit)="submitDonation(foodInput.value, addressInput.value); $event.preventDefault();">
     <div>
       <label for="food">Food donated</label>
@@ -17,7 +19,8 @@
     <button type="submit">Submit Donation</button>
   </form>
 
-  <div *ngIf="submitted" class="success-message">
+  @if (submitted) {
+  <div class="success-message">
     <h3>Thank You for Your Generous Donation! 🎉</h3>
     <p>Your contribution helps feed those in need.</p>
     <div class="donation-details">
@@ -25,5 +28,7 @@
       <p><strong>Pickup Address:</strong> {{ address }}</p>
     </div>
   </div>
+  }
 </div>
+}
 
