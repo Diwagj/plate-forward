@@ -17,10 +17,13 @@
     <button type="submit">Submit Donation</button>
   </form>
 
-  <div *ngIf="submitted">
-    <p>Thanks — donation recorded:</p>
-    <p><strong>Food: </strong> {{ donatedFood }}</p>
-    <p><strong>Address: </strong> {{ address }}</p>
+  <div *ngIf="submitted" class="success-message">
+    <h3>Thank You for Your Generous Donation! 🎉</h3>
+    <p>Your contribution helps feed those in need.</p>
+    <div class="donation-details">
+      <p><strong>Food Donated:</strong> {{ donatedFood }}</p>
+      <p><strong>Pickup Address:</strong> {{ address }}</p>
+    </div>
   </div>
 </div>
 

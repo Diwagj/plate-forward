@@ -2,7 +2,7 @@
 <div class="profile-container">
       <h2>User Profile</h2>
       <div class="profile-card" *ngIf="user()">
-        <img [src]="'/assets/boy.jpeg'" alt="Profile" class="profile-avatar">
+        <img [src]="'/defaultProfile.png'" alt="Profile" class="profile-avatar">
         <h3>{{ user()?.name }}</h3>
         <p><strong>Email:</strong> {{ user()?.email }}</p>
         <p><strong>Role:</strong> {{ user()?.role }}</p>

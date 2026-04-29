@@ -15,6 +15,15 @@ export class UserServiceService {
   public currentUser$ = this.currentUserSubject.asObservable();
   public token = signal<string>('');
 
+  constructor() {
+    const token = localStorage.getItem('token');
+    const userStr = localStorage.getItem('user');
+    if (token && userStr) {
+      this.token.set(token);
+      this.currentUserSubject.next(JSON.parse(userStr));
+    }
+  }
+
   fetchUsers() {
     const headers = this.getAuthHeaders();
     if (this.http) {

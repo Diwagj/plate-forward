@@ -2,6 +2,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { UserServiceService } from '../user-service.service';
+import { FoodDonoServiceService } from '../food-dono-service.service';
 
 @Component({
   selector: 'app-food-donation',
@@ -12,6 +13,7 @@ import { UserServiceService } from '../user-service.service';
 })
 export class FoodDonationComponent implements OnInit {
   private userService = inject(UserServiceService);
+  private foodDonoService = inject(FoodDonoServiceService);
   private router = inject(Router);
   isLoggedIn = false;
   donatedFood = '';
@@ -31,14 +33,25 @@ export class FoodDonationComponent implements OnInit {
     this.address = address?.trim() ?? '';
 
     if (this.donatedFood && this.address) {
-      this.submitted = true;
-      console.log('Donation submitted', { food: this.donatedFood, address: this.address });
-      
+      const donationData = {
+        title: this.donatedFood,
+        description: `Donation of ${this.donatedFood}`,
+        location: this.address,
+        expiry: new Date(Date.now() + 24 * 60 * 60 * 1000) // 1 day from now
+      };
+      this.foodDonoService.saveFoodDono(donationData).subscribe({
+        next: (response) => {
+          this.submitted = true;
+          console.log('Donation saved', response);
+        },
+        error: (err) => {
+          console.error('Error saving donation', err);
+          alert('Failed to save donation. Please try again.');
+        }
+      });
     } else {
       this.submitted = false;
       alert('Please enter both the food you are donating and the address.');
     }
   }
-
-  
 }

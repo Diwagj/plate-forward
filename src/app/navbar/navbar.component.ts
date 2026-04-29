@@ -39,7 +39,12 @@ export class NavbarComponent implements OnInit, OnDestroy {
   }
 
   toggleDropdown() {
+    this.isDropdownOpen = !this.isDropdownOpen;
+  }
+
+  goToProfile() {
     this.router.navigate(['/profile']);
+    this.isDropdownOpen = false;
   }
 
   goToDonation(event: Event) {
