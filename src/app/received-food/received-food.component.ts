@@ -9,7 +9,7 @@ import { UserServiceService } from '../user-service.service';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './received-food.component.html',
-  styleUrl: './received-food.component.css'
+  styleUrls: ['./received-food.component.css']
 })
 export class ReceivedFoodComponent implements OnInit {
   private foodService = inject(FoodDonoServiceService);

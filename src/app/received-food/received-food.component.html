@@ -10,22 +10,23 @@
   @if (donations().length > 0) {
   <div class="donations-list">
     @for (donation of donations(); track donation._id) {
-    <div class="donation-card">
-      <div class="donation-info">
-        <h3>{{ donation.title || donation.food }}</h3>
-        <p><strong>Description:</strong> {{ donation.description }}</p>
-        <p><strong>Pickup Location:</strong> {{ donation.location || donation.address }}</p>
-        @if (donation.expiry) {
-        <p class="expiry-info"><strong>Available Until:</strong> {{ donation.expiry | date: 'shortDate' }}</p>
-        }
-        @if (donation.donorName) {
-        <p class="donor-info"><strong>Donor:</strong> {{ donation.donorName }}</p>
-        }
-        @if (donation.donorContact) {
-        <p class="donor-contact"><strong>Contact:</strong> {{ donation.donorContact }}</p>
-        }
+      <div class="donation-card">
+        <div class="donation-info">
+          <h3>{{ donation.title || donation.food }}</h3>
+          <p><strong>Description:</strong> {{ donation.description }}</p>
+          <p><strong>Pickup Location:</strong> {{ donation.location || donation.address }}</p>
+          @if (donation.expiry) {
+            <p class="expiry-info"><strong>Available Until:</strong> {{ donation.expiry | date: 'shortDate' }}</p>
+          }
+          @if (donation.donorName) {
+            <p class="donor-info"><strong>Donor:</strong> {{ donation.donorName }}</p>
+          }
+          @if (donation.donorContact) {
+            <p class="donor-contact"><strong>Contact:</strong> {{ donation.donorContact }}</p>
+          }
+          <button type="button" class="get-button" (click)="getDonation(donation)">Get</button>
+        </div>
       </div>
-    </div>
     }
   </div>
   }
