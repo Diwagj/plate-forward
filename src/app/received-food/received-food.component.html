@@ -8,8 +8,10 @@
   <div *ngIf="donations().length > 0" class="donations-list">
     <div *ngFor="let donation of donations()" class="donation-card">
       <div class="donation-info">
-        <h3>{{ donation.food }}</h3>
-        <p><strong>Pickup Address:</strong> {{ donation.address }}</p>
+        <h3>{{ donation.title || donation.food }}</h3>
+        <p><strong>Description:</strong> {{ donation.description }}</p>
+        <p><strong>Pickup Location:</strong> {{ donation.location || donation.address }}</p>
+        <p *ngIf="donation.expiry" class="expiry-info"><strong>Available Until:</strong> {{ donation.expiry | date: 'shortDate' }}</p>
         <p *ngIf="donation.donorName" class="donor-info"><strong>Donor:</strong> {{ donation.donorName }}</p>
         <p *ngIf="donation.donorContact" class="donor-contact"><strong>Contact:</strong> {{ donation.donorContact }}</p>
       </div>
