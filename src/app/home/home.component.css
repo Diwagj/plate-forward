@@ -1,36 +1,14 @@
-
 .home-container {
   max-width: 100%;
   margin: 0 auto;
-  padding: 20px;
-  font-family: Arial, sans-serif;
+  padding: 28px 20px 40px;
   position: relative;
-  min-height: calc(100vh - 80px);
+  min-height: calc(100vh - 90px);
   display: flex;
   align-items: center;
   justify-content: center;
-  background-image: url('/boy.jpeg');
-  background-size: cover;
-  background-position: center;
-  background-attachment: scroll;
-}
-
-.home-container::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.55);
-  z-index: 1;
-  pointer-events: none;
-}
-
-.home-container > * {
-  position: relative;
-  z-index: 2;
-  width: 100%;
+  background: radial-gradient(circle at top left, rgba(160, 254, 251, 0.55), transparent 26%),
+              linear-gradient(180deg, #f7fdff 0%, #e9f7ff 55%, #ffffff 100%);
 }
 
 .home-inner {
@@ -38,79 +16,78 @@
   max-width: 1100px;
   display: flex;
   flex-direction: column;
-  gap: 24px;
-  padding: 24px;
+  gap: 26px;
+  padding: 28px;
   box-sizing: border-box;
 }
 
 .hero-section {
   text-align: center;
-  background-color: rgba(248, 249, 250, 0.92);
-  padding: 32px 24px;
-  border-radius: 14px;
-  margin-bottom: 0;
-  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.96);
+  padding: 40px 32px;
+  border-radius: 28px;
+  border: 1px solid rgba(73, 79, 193, 0.14);
+  box-shadow: var(--color-shadow);
+  backdrop-filter: blur(14px);
 }
 
 .home-logo {
-  width: 84px;
-  height: 84px;
+  width: 90px;
+  height: 90px;
   object-fit: contain;
   display: block;
-  margin: 0 auto 18px;
+  margin: 0 auto 20px;
+  border-radius: 22px;
+  background: linear-gradient(135deg, rgba(160, 254, 251, 0.35), rgba(253, 8, 74, 0.12));
+  padding: 10px;
 }
 
 .hero-section h1 {
-  color: #2c3e50;
-  font-size: clamp(2rem, 3vw, 3rem);
-  margin-bottom: 12px;
-  opacity: 1.0;
+  color: var(--color-primary);
+  font-size: clamp(2.25rem, 4vw, 3.6rem);
+  margin-bottom: 18px;
 }
 
 .hero-section p {
-  color: #5f6d7a;
-  font-size: 1.1em;
-  opacity: 1.0;
-  max-width: 720px;
+  color: var(--color-muted);
+  font-size: 1.1rem;
+  max-width: 760px;
   margin: 0 auto;
 }
 
-
 .mission-vision-wrap {
   display: grid;
-  grid-template-columns: repeat(2, minmax(260px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(2, minmax(280px, 1fr));
+  gap: 24px;
   align-items: stretch;
 }
 
 .mission-section,
 .vision-section {
-  padding: 26px;
-  background-color: rgba(255, 255, 255, 0.95);
-  border-radius: 16px;
-  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.12);
-  opacity: 1;
-  min-height: 220px;
+  padding: 34px 28px;
+  background: linear-gradient(180deg, rgba(160, 254, 251, 0.18), rgba(255, 255, 255, 0.95));
+  border-radius: 24px;
+  box-shadow: var(--color-shadow);
+  border: 1px solid rgba(73, 79, 193, 0.08);
+  min-height: 240px;
 }
 
 .mission-section h2,
 .vision-section h2 {
-  color: #2a4757;
-  font-size: 1.6em;
-  margin-bottom: 14px;
+  color: var(--color-primary);
+  font-size: 1.7rem;
+  margin-bottom: 16px;
   text-align: center;
-  opacity: 1.0;
 }
 
 .mission-section p,
 .vision-section p {
-  color: #454f5a;
-  line-height: 1.7;
-  font-size: 1em;
+  color: var(--color-text);
+  line-height: 1.8;
+  font-size: 1rem;
   text-align: center;
   max-width: 600px;
   margin: 0 auto;
-  opacity: 1.0;
 }
 
 @media (max-width: 900px) {
@@ -122,15 +99,15 @@
 @media (max-width: 640px) {
   .home-container {
     min-height: auto;
-    padding: 18px 14px;
+    padding: 18px 14px 34px;
   }
 
   .hero-section {
-    padding: 24px 18px;
+    padding: 28px 22px;
   }
 
   .mission-section,
   .vision-section {
-    padding: 22px;
+    padding: 24px;
   }
 }

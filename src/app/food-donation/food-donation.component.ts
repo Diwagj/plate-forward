@@ -6,7 +6,6 @@ import { FoodDonoServiceService } from '../food-dono-service.service';
 @Component({
   selector: 'app-food-donation',
   standalone: true,
-  imports: [],
   templateUrl: './food-donation.component.html',
   styleUrls: ['./food-donation.component.css']
 })
@@ -39,9 +38,8 @@ export class FoodDonationComponent implements OnInit {
         expiry: new Date(Date.now() + 24 * 60 * 60 * 1000) // 1 day from now
       };
       this.foodDonoService.saveFoodDono(donationData).subscribe({
-        next: (response) => {
+        next: () => {
           this.submitted = true;
-          console.log('Donation saved', response);
         },
         error: (err) => {
           console.error('Error saving donation', err);

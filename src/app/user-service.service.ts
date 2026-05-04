@@ -9,8 +9,6 @@ export class UserServiceService {
   private http = inject(HttpClient, { optional: true });
   private apiUrl = 'http://localhost:3000/api';
 
-  userList = signal<any[]>([]);
-
   private currentUserSubject = new BehaviorSubject<any>(null);
   public currentUser$ = this.currentUserSubject.asObservable();
   public token = signal<string>('');
@@ -24,19 +22,11 @@ export class UserServiceService {
     }
   }
 
-  fetchUsers() {
-    const headers = this.getAuthHeaders();
-    if (this.http) {
-      this.http.get<any[]>(`${this.apiUrl}/users`, { headers }).subscribe(data => this.userList.set(data));
-    }
-  }
-
   saveUser(data: any): Observable<any> {
     if (!this.http) return of(null) as Observable<any>;
     return this.http.post(`${this.apiUrl}/users`, data).pipe(
       tap((response: any) => {
         this.setSession(response.user, response.token);
-        console.log('User created & auto-logged in');
       })
     );
   }
@@ -70,22 +60,6 @@ export class UserServiceService {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`
     });
-  }
-
-  deleteUser(id: string) {
-    const headers = this.getAuthHeaders();
-    if (this.http) {
-      return this.http.delete(`${this.apiUrl}/users/${id}`, { headers }).subscribe(() =>
-        this.userList.update(list => list.filter(p => p._id !== id))
-      );
-    }
-    return null;
-  }
-
-  updateUser(id: string, data: any) {
-    const headers = this.getAuthHeaders();
-    if (!this.http) return of(null) as Observable<any>;
-    return this.http.put(`${this.apiUrl}/users/${id}`, data, { headers });
   }
 
   isLoggedIn(): boolean {

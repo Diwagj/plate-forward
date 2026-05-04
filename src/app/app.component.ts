@@ -12,7 +12,6 @@ import { NotificationService } from './notification.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit, OnDestroy {
-  title = 'plate-forward';
   noticeMessage = '';
   private subscription: Subscription | undefined;
   private notification = inject(NotificationService);

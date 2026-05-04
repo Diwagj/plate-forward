@@ -2,7 +2,6 @@ import { Component, inject, OnInit, OnDestroy } from '@angular/core';
 import { RouterModule, Router } from '@angular/router';
 import { UserServiceService } from '../user-service.service';
 import { Subscription } from 'rxjs';
-import { NotificationService } from '../notification.service';
 
 @Component({
   selector: 'app-navbar',
@@ -16,7 +15,6 @@ export class NavbarComponent implements OnInit, OnDestroy {
   private subscription: Subscription = new Subscription();
   isLoggedInFlag = false;
   isDropdownOpen = false;
-  private notification = inject(NotificationService);
 
   ngOnInit() {
     this.subscription = this.userService.currentUser$.subscribe(user => {

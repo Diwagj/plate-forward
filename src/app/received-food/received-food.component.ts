@@ -29,6 +29,12 @@ export class ReceivedFoodComponent implements OnInit {
       return;
     }
 
-    alert(`You have requested the donation: ${donation.title || donation.food}`);
+    const currentUser = this.userService.getCurrentUser();
+    if (!currentUser) return;
+
+    this.foodService.updateFoodDono(donation._id, { requester: currentUser.id }).subscribe(() => {
+      alert(`You have requested the donation: ${donation.title || donation.food}`);
+      this.foodService.fetchFoodDonos(); // refresh the list
+    });
   }
 }

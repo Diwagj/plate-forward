@@ -1,36 +1,32 @@
-/* Global notice banner shown below navbar */
 .global-notice {
-	max-width: 980px;
-	margin: 12px auto;
-	padding: 10px 14px;
-	background: #fff3cd;
-	color: #664d03;
-	border: 1px solid #ffecb5;
-	border-radius: 6px;
-	text-align: center;
-	font-weight: 600;
+  max-width: 980px;
+  margin: 16px auto;
+  padding: 14px 18px;
+  background: rgba(160, 254, 251, 0.24);
+  color: var(--color-primary);
+  border: 1px solid rgba(73, 79, 193, 0.16);
+  border-radius: 14px;
+  text-align: center;
+  font-weight: 700;
+  box-shadow: var(--color-shadow);
+  cursor: pointer;
 }
-
-.global-notice {
-	cursor: pointer;
-}
-
-
 
 .global-notice-text {
-	margin-right: 12px;
+  margin-right: 12px;
 }
 
 .notice-btn {
-	background: #1f8a67;
-	color: #fff;
-	border: none;
-	padding: 6px 10px;
-	border-radius: 6px;
-	cursor: pointer;
-	font-weight: 600;
+  background: var(--color-primary);
+  color: var(--color-surface);
+  border-radius: 999px;
+  padding: 8px 14px;
+  border: 1px solid transparent;
+  transition: background-color 0.25s ease, transform 0.25s ease;
 }
 
 .notice-btn:hover {
-	opacity: 0.9;
+  background: #373d9c;
+  transform: translateY(-1px);
 }
+

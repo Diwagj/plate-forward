@@ -5,9 +5,9 @@
   flex-wrap: wrap;
   gap: 16px;
   padding: 18px 24px;
-  background-color: #1f8a67;
+  background: linear-gradient(135deg, var(--color-primary), #3d45cb);
   color: #ffffff;
-  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 14px 40px rgba(73, 79, 193, 0.18);
   position: sticky;
   top: 0;
   z-index: 10;
@@ -20,27 +20,27 @@
 }
 
 .brand-logo {
-  width: 40px;
-  height: 40px;
+  width: 42px;
+  height: 42px;
   object-fit: contain;
-  border-radius: 8px;
-  background: #ffffff;
-  padding: 4px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.18);
+  padding: 6px;
 }
 
 .brand-text {
-  font-size: 1.25rem;
-  font-weight: 700;
+  font-size: 1.3rem;
+  font-weight: 800;
   letter-spacing: 0.05em;
 }
 
 .notice {
   margin-left: 16px;
-  background: rgba(255,255,255,0.12);
-  color: #fff;
-  padding: 6px 10px;
-  border-radius: 6px;
-  font-weight: 600;
+  background: rgba(160, 254, 251, 0.25);
+  color: var(--color-primary);
+  padding: 8px 12px;
+  border-radius: 999px;
+  font-weight: 700;
 }
 
 .nav-links {
@@ -52,14 +52,10 @@
   padding: 0;
 }
 
-.nav-links li {
-  margin: 0;
-}
-
 .navbar a {
-  color: #edf7f0;
+  color: #f5f9ff;
   text-decoration: none;
-  font-weight: 600;
+  font-weight: 700;
   padding: 10px 14px;
   border-radius: 999px;
   transition: background-color 0.25s ease, color 0.25s ease;
@@ -67,7 +63,7 @@
 
 .navbar a:hover,
 .navbar a.active {
-  background-color: rgba(255, 255, 255, 0.18);
+  background-color: rgba(240, 136, 160, 0.18);
   color: #ffffff;
 }
 
@@ -76,7 +72,7 @@
   height: 40px;
   border-radius: 50%;
   cursor: pointer;
-  border: 2px solid #edf7f0;
+  border: 2px solid rgba(160, 254, 251, 0.9);
   transition: border-color 0.25s ease;
 }
 
@@ -92,36 +88,35 @@
   position: absolute;
   top: 100%;
   right: 0;
-  background-color: #ffffff;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  min-width: 120px;
+  background-color: var(--color-surface);
+  border: 1px solid rgba(73, 79, 193, 0.12);
+  border-radius: 14px;
+  box-shadow: 0 18px 35px rgba(73, 79, 193, 0.14);
+  min-width: 140px;
   z-index: 100;
 }
 
 .dropdown-menu a {
   display: block;
-  padding: 10px 15px;
-  color: #333;
+  padding: 12px 16px;
+  color: var(--color-text);
   text-decoration: none;
-  font-weight: 500;
-  border-radius: 0;
+  font-weight: 600;
 }
 
 .dropdown-menu a:hover {
-  background-color: #f5f5f5;
-  color: #1f8a67;
+  background-color: rgba(160, 254, 251, 0.35);
+  color: var(--color-primary);
 }
 
 .dropdown-menu a:first-child {
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
+  border-top-left-radius: 14px;
+  border-top-right-radius: 14px;
 }
 
 .dropdown-menu a:last-child {
-  border-bottom-left-radius: 8px;
-  border-bottom-right-radius: 8px;
+  border-bottom-left-radius: 14px;
+  border-bottom-right-radius: 14px;
 }
 
 @media (max-width: 640px) {

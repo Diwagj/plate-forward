@@ -10,6 +10,7 @@
   @if (donations().length > 0) {
   <div class="donations-list">
     @for (donation of donations(); track donation._id) {
+      @if (!donation.requester) {
       <div class="donation-card">
         <div class="donation-info">
           <h3>{{ donation.title || donation.food }}</h3>
@@ -27,6 +28,7 @@
           <button type="button" class="get-button" (click)="getDonation(donation)">Get</button>
         </div>
       </div>
+      }
     }
   </div>
   }

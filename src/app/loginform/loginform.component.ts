@@ -1,15 +1,14 @@
 import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { UserServiceService } from '../user-service.service';
-import { Router, RouterLink } from '@angular/router';
-import { NotificationService } from '../notification.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-loginform',
   standalone: true,
   imports: [ReactiveFormsModule],
   templateUrl: './loginform.component.html',
-  styleUrl: './loginform.component.css'
+  styleUrls: ['./loginform.component.css']
 })
 export class LoginformComponent {
   private fb = inject(FormBuilder);
@@ -25,8 +24,7 @@ export class LoginformComponent {
     if (this.loginForm.valid) {
       const { email, password } = this.loginForm.value;
       this.userService.login(email, password).subscribe({
-        next: (response: any) => {
-          console.log('Login successful', response);
+        next: () => {
           this.router.navigate(['/home']);
         },
         error: (error: any) => {

@@ -24,7 +24,8 @@ const FoodDonation = mongoose.model('FoodDonation', new mongoose.Schema({
   description: String,
   location: String,
   expiry: Date,
-  donor: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }
+  donor: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+  requester: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }
 }, { timestamps: true }));
 
 // Auth middleware
@@ -119,7 +120,7 @@ app.post('/api/food-donations', authMiddleware, async (req, res) => {
   try {
     const donation = new FoodDonation({ ...req.body, donor: req.user.id });
     await donation.save();
-    const populated = await FoodDonation.findById(donation._id).populate('donor', 'name email');
+    const populated = await FoodDonation.findById(donation._id).populate('donor', 'name email').populate('requester', 'name email');
     res.status(201).json(populated);
     console.log('✅ New food donation:', donation.title);
   } catch (error) {
@@ -129,10 +130,30 @@ app.post('/api/food-donations', authMiddleware, async (req, res) => {
 
 app.get('/api/food-donations', async (req, res) => {
   try {
-    const donations = await FoodDonation.find().populate('donor', 'name email');
+    const donations = await FoodDonation.find().populate('donor', 'name email').populate('requester', 'name email');
     res.json(donations);
   } catch (error) {
     res.status(500).json({ error: error.message });
+  }
+});
+
+app.put('/api/food-donations/:id', authMiddleware, async (req, res) => {
+  try {
+    const donation = await FoodDonation.findByIdAndUpdate(req.params.id, req.body, { new: true }).populate('donor', 'name email').populate('requester', 'name email');
+    if (!donation) return res.status(404).json({ error: 'Donation not found' });
+    res.json(donation);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+});
+
+app.delete('/api/food-donations/:id', authMiddleware, async (req, res) => {
+  try {
+    const donation = await FoodDonation.findByIdAndDelete(req.params.id);
+    if (!donation) return res.status(404).json({ error: 'Donation not found' });
+    res.json({ message: 'Donation deleted' });
+  } catch (error) {
+    res.status(400).json({ error: error.message });
   }
 });
 

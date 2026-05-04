@@ -9,6 +9,32 @@
         <p><strong>Role:</strong> {{ user()?.role }}</p>
         <a routerLink="/home" class="back-btn">Back to Home</a>
       </div>
+
+      <div class="requested-donations">
+        <h3>Requested Food</h3>
+        @if (requestedDonations().length === 0) {
+          <p>No requested food.</p>
+        } @else {
+          <div class="donations-list">
+            @for (donation of requestedDonations(); track donation._id) {
+              <div class="donation-card">
+                <div class="donation-info">
+                  <h4>{{ donation.title || donation.food }}</h4>
+                  <p><strong>Description:</strong> {{ donation.description }}</p>
+                  <p><strong>Pickup Location:</strong> {{ donation.location || donation.address }}</p>
+                  @if (donation.expiry) {
+                    <p class="expiry-info"><strong>Available Until:</strong> {{ donation.expiry | date: 'shortDate' }}</p>
+                  }
+                  @if (donation.donorName) {
+                    <p class="donor-info"><strong>Donor:</strong> {{ donation.donorName }}</p>
+                  }
+                  <button type="button" class="received-button" (click)="markAsReceived(donation)">Received</button>
+                </div>
+              </div>
+            }
+          </div>
+        }
+      </div>
       } @else {
       <p>Please log in to view profile.</p>
       }
